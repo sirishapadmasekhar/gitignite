@@ -43,5 +43,18 @@ TECHNOLOGIES = [
     ".env",
     "*.log",
 ],
-}
+},
+{
+    "name": "Terraform",
+    "detector": lambda path: any(
+        file.suffix == ".tf"
+        for file in path.iterdir()
+        if file.is_file()
+    ),
+    "rules": [
+        ".terraform/",
+        "*.tfstate",
+        "*.tfstate.*",
+    ],
+},
 ]
