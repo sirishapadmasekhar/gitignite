@@ -27,4 +27,21 @@ TECHNOLOGIES = [
     "detector": detect_jupyter,
     "rules": JUPYTER_IGNORE_RULES,
 },
+{
+    "name": "Docker",
+    "detector": lambda path: any(
+        (path / filename).exists()
+        for filename in [
+            "Dockerfile",
+            "docker-compose.yml",
+            "docker-compose.yaml",
+            "compose.yml",
+            "compose.yaml",
+        ]
+    ),
+    "rules": [
+    ".env",
+    "*.log",
+],
+}
 ]
