@@ -5,7 +5,7 @@ from rich import print
 
 from ignite.analyzer import analyze_project
 from ignite.fixer import backup_gitignore, append_missing_rules
-
+from ignite.doctor import generate_doctor_report
 app = typer.Typer()
 
 
@@ -104,6 +104,37 @@ def fix():
 
     print(f"[green]✓ Added {added} rule(s) to .gitignore[/green]")
 
+@app.command()
+def doctor():
+    """
+    Evaluate the Git hygiene of the current project.
+    """
+
+    report = generate_doctor_report(Path.cwd())
+
+    print("[bold cyan]🩺 ignite doctor[/bold cyan]\n")
+
+    print(f"Git Hygiene Score: [bold]{report['score']}/100[/bold]\n")
+
+    if report["detected"]:
+        print("[bold green]Detected:[/bold green]")
+
+        for tech in report["detected"]:
+            print(f"✓ {tech}")
+
+    if report["issues"]:
+        print("\n[bold yellow]Issues:[/bold yellow]")
+
+        for issue in report["issues"]:
+            print(f"⚠ {issue}")
+    else:
+        print("\n[green]✓ No issues found.[/green]")
+
+    if report["recommendations"]:
+        print("\n[bold blue]Recommendations:[/bold blue]")
+
+        for recommendation in report["recommendations"]:
+            print(f"• {recommendation}")
 
 if __name__ == "__main__":
     app()
