@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+ignite/__init__.py
+ignite/cli.py
+ignite_cli.egg-info/PKG-INFO
+ignite_cli.egg-info/SOURCES.txt
+ignite_cli.egg-info/dependency_links.txt
+ignite_cli.egg-info/entry_points.txt
+ignite_cli.egg-info/requires.txt
+ignite_cli.egg-info/top_level.txt
