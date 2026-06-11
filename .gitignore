@@ -19,3 +19,6 @@ __pycache__/
 
 # Added by ignite
 .vscode/
+
+# Added by ignite
+.ipynb_checkpoints/

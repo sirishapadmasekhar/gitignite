@@ -4,6 +4,8 @@ from ignite.rules.node import NODE_IGNORE_RULES
 from ignite.rules.python import PYTHON_IGNORE_RULES
 from ignite.detectors.vscode_detector import detect_vscode
 from ignite.rules.vscode import VSCODE_IGNORE_RULES
+from ignite.detectors.jupyter_detector import detect_jupyter
+from ignite.rules.jupyter import JUPYTER_IGNORE_RULES
 TECHNOLOGIES = [
     {
         "name": "Python",
@@ -19,5 +21,10 @@ TECHNOLOGIES = [
     "name": "VS Code",
     "detector": detect_vscode,
     "rules": VSCODE_IGNORE_RULES,
+},
+{
+    "name": "Jupyter",
+    "detector": detect_jupyter,
+    "rules": JUPYTER_IGNORE_RULES,
 },
 ]
