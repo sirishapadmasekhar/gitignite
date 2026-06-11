@@ -3,9 +3,7 @@ from pathlib import Path
 import typer
 from rich import print
 
-from ignite.detectors.python_detector import detect_python
-from ignite.gitignore import read_gitignore
-from ignite.rules.python import PYTHON_IGNORE_RULES
+from ignite.analyzer import analyze_project
 
 app = typer.Typer()
 
@@ -24,41 +22,16 @@ def scan():
     Scan the current project and suggest .gitignore improvements.
     """
 
-    # Current directory being scanned
     project_path = Path.cwd()
 
-    # Read existing .gitignore entries
-    existing_rules = read_gitignore(project_path)
+    results = analyze_project(project_path)
 
-    # Technologies detected in this repository
-    detected = []
-
-    # Rules that already exist in .gitignore
-    configured_rules = []
-
-    # Rules that should be added
-    missing_rules = []
+    detected = results["detected"]
+    configured_rules = results["configured_rules"]
+    missing_rules = results["missing_rules"]
 
     print("[green]🔥 ignite[/green]")
     print(f"Scanning: {project_path}\n")
-
-    # -------------------------
-    # Python Detection
-    # -------------------------
-    if detect_python(project_path):
-        detected.append("Python")
-
-        # Compare recommended Python rules
-        # against the existing .gitignore
-        for rule in PYTHON_IGNORE_RULES:
-            if rule in existing_rules:
-                configured_rules.append(rule)
-            else:
-                missing_rules.append(rule)
-
-    # -------------------------
-    # Display Results
-    # -------------------------
 
     if detected:
         print("[bold green]Detected:[/bold green]")
