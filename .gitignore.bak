@@ -10,7 +10,9 @@ __pycache__/
 .coverage
 
 # IDE settings
-.vscode/
+#.vscode/
 
 # macOS
 .DS_Store
+# Added by ignite
+*.pyc
