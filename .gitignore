@@ -15,7 +15,6 @@ __pycache__/
 # macOS
 .DS_Store
 # Added by ignite
-*.pyc
 
 # Added by ignite
 .vscode/
@@ -23,3 +22,7 @@ __pycache__/
 # Added by ignite
 .ipynb_checkpoints/
 .env
+# Added by ignite
+
+# Added by ignite
+*.pyc
