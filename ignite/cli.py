@@ -6,6 +6,7 @@ from rich import print
 from ignite.analyzer import analyze_project
 from ignite.fixer import backup_gitignore, append_missing_rules
 from ignite.doctor import generate_doctor_report
+from ignite.audit import generate_audit_report
 app = typer.Typer()
 
 
@@ -135,6 +136,28 @@ def doctor():
 
         for recommendation in report["recommendations"]:
             print(f"• {recommendation}")
+
+@app.command()
+def audit():
+    """
+    Identify potentially risky files that are not ignored.
+    """
+
+    report = generate_audit_report(Path.cwd())
+
+    print("[bold red]🔍 ignite audit[/bold red]\n")
+
+    if report["risks"]:
+        print("[bold yellow]Potential Risks:[/bold yellow]\n")
+
+        for risk in report["risks"]:
+            print(f"⚠ {risk}")
+
+        print("\nRecommendations:")
+        print("• Add these files to .gitignore")
+        print("• Run: ignite fix")
+    else:
+        print("[green]✓ No obvious risks found.[/green]")
 
 if __name__ == "__main__":
     app()
