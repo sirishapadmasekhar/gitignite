@@ -106,16 +106,34 @@ def fix():
     print(f"[green]✓ Added {added} rule(s) to .gitignore[/green]")
 
 @app.command()
-def doctor():
+def doctor(
+    ci: bool = typer.Option(
+        False,
+        "--ci",
+        help="Exit with a non-zero status code if issues are found.",
+    )
+):
     """
     Evaluate the Git hygiene of the current project.
+
+    This command analyzes the repository and reports its overall
+    Git hygiene status. It displays a hygiene score, detected
+    technologies, identified issues, and recommendations.
+
+    CI Mode:
+    When the --ci flag is used, the command exits with a non-zero
+    status code if any issues are found. This allows ignite to be
+    integrated into CI/CD pipelines such as GitHub Actions.
     """
 
     report = generate_doctor_report(Path.cwd())
 
     print("[bold cyan]🩺 ignite doctor[/bold cyan]\n")
 
-    print(f"Git Hygiene Score: [bold]{report['score']}/100[/bold]\n")
+    print(
+        f"Git Hygiene Score: "
+        f"[bold]{report['score']}/100[/bold]\n"
+    )
 
     if report["detected"]:
         print("[bold green]Detected:[/bold green]")
@@ -137,6 +155,14 @@ def doctor():
         for recommendation in report["recommendations"]:
             print(f"• {recommendation}")
 
+    # CI mode
+    if ci:
+        if report["issues"]:
+            print("\n[bold red]CI check failed.[/bold red]")
+
+            raise typer.Exit(code=1)
+        else:
+            print("\n[bold green]CI check passed.[/bold green]")
 @app.command()
 def audit():
     """
