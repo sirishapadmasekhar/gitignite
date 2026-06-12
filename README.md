@@ -4,7 +4,6 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/gitignite.svg)](https://pypi.org/project/gitignite/)
 [![Tests](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml/badge.svg)](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/gitignite)](https://pypi.org/project/gitignite/)
 
 **Smart Git hygiene for modern projects.**
 
