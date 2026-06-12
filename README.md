@@ -1,5 +1,18 @@
 # 🔥 GitIgnite
 
+
+# 🔥 GitIgnite
+
+[![PyPI version](https://img.shields.io/pypi/v/gitignite.svg)](https://pypi.org/project/gitignite/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/gitignite.svg)](https://pypi.org/project/gitignite/)
+[![Tests](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml/badge.svg)](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/gitignite)](https://pypi.org/project/gitignite/)
+
+**Smart Git hygiene for modern projects.**
+
+Keep your repositories clean, secure, and production-ready by automatically detecting Git hygiene issues, recommending `.gitignore` improvements, auditing risky files, and validating repository health.
+
 **Smart Git hygiene for modern projects.**
 
 GitIgnite is a lightweight command-line tool that helps developers maintain clean repositories by detecting common Git hygiene issues, recommending `.gitignore` improvements, identifying risky files, and evaluating repository health.
@@ -290,5 +303,3 @@ See the `LICENSE` file for details.
 * PyPI Package: https://pypi.org/project/gitignite/
 
 ---
-
-Made with ❤️ to help developers keep their repositories clean.
