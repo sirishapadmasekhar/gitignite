@@ -1,2 +1,0 @@
-[console_scripts]
-ignite = ignite.cli:app

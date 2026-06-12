@@ -1,229 +1,65 @@
 # 🔥 GitIgnite
 
-<div align="center">
+**Smart Git hygiene for modern projects.**
 
-### Smart Git hygiene for modern projects
+GitIgnite is a lightweight command-line tool that helps developers maintain clean repositories by detecting common Git hygiene issues, recommending `.gitignore` improvements, identifying risky files, and evaluating repository health.
 
-Automatically detect missing `.gitignore` rules, audit repository health, and keep repositories clean as they evolve.
-
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
-![Tests](https://img.shields.io/badge/tests-18%20passing-brightgreen)
-![CI](https://img.shields.io/badge/CI-GitHub%20Actions-success)
-![License](https://img.shields.io/badge/license-MIT-green)
-
-</div>
-
----
-
-## Why GitIgnite?
-
-Every developer has accidentally committed something they shouldn't have.
-
-* Forgot to ignore `.venv/`
-* Accidentally committed `.env`
-* Added Docker but never updated `.gitignore`
-* Introduced Terraform without excluding state files
-* Copied an old `.gitignore` and never looked at it again
-
-Projects evolve.
-
-`.gitignore` files usually don't.
-
-**GitIgnite helps your repository adapt automatically to the technologies you're actually using.**
-
-Instead of asking:
-
-> "Which `.gitignore` template should I use?"
-
-GitIgnite asks:
-
-> "What does this repository need right now?"
+Whether you're starting a new project or maintaining an existing one, GitIgnite helps you avoid accidentally committing generated files, secrets, caches, and development artifacts.
 
 ---
 
 ## ✨ Features
 
-### 🔍 Smart Project Detection
+* 🔍 **Scan projects automatically**
 
-Automatically detects technologies used in your repository and recommends appropriate Git ignore rules.
+  * Detects technologies used in your repository.
+  * Recommends relevant `.gitignore` rules.
 
-Supported technologies:
+* 🛠️ **Apply fixes**
 
-* ✅ Python
-* ✅ Node.js
-* ✅ VS Code
-* ✅ Jupyter Notebooks
-* ✅ Docker
-* ✅ Terraform
+  * Adds missing `.gitignore` entries automatically.
 
----
+* 🩺 **Evaluate repository health**
 
-### 🛠 Intelligent `.gitignore` Suggestions
+  * Generates a Git Hygiene Score.
+  * Highlights potential issues and recommendations.
 
-Identify missing ignore rules without overwriting your existing configuration.
+* 🔐 **Audit risky files**
 
-Example:
+  * Identifies files that are commonly committed by mistake.
 
-```bash
-ignite scan
-```
+* ⚙️ **CI-friendly**
 
-Output:
+  * Supports non-zero exit codes for automated workflows.
 
-```text
-🔥 ignite
-Scanning: /path/to/project
+* 🚀 **Easy installation**
 
-Detected:
-✓ Python
-✓ Docker
-
-Already configured:
-✓ .venv/
-✓ __pycache__/
-
-Missing ignore rules:
-• .env
-• *.log
-```
+  * Install directly from PyPI.
 
 ---
 
-### 🔧 Automatic Fixes
+## Supported Technologies
 
-Apply safe improvements directly to `.gitignore`.
+GitIgnite currently supports detection and recommendations for:
 
-```bash
-ignite fix
-```
+| Technology        | Detection | GitIgnore Support |
+| ----------------- | --------- | ----------------- |
+| Python            | ✅         | ✅                 |
+| VS Code           | ✅         | ✅                 |
+| Jupyter Notebooks | ✅         | ✅                 |
+| Docker            | ✅         | ✅                 |
+| Terraform         | ✅         | ✅                 |
 
-GitIgnite will:
-
-* Add missing rules
-* Preserve existing entries
-* Avoid duplicates
-* Create a backup before modifying files
-
-Example:
-
-```text
-The following rules will be added:
-
-+ .terraform/
-+ *.tfstate
-
-Backup:
-.gitignore.bak
-
-Apply changes? [Y/n]
-
-✓ Created .gitignore.bak
-✓ Added 2 rule(s) to .gitignore
-```
+More technologies are planned for future releases.
 
 ---
 
-### 🩺 Git Hygiene Doctor
+## Installation
 
-Evaluate repository health and generate a hygiene score.
-
-```bash
-ignite doctor
-```
-
-Example:
-
-```text
-🩺 ignite doctor
-
-Git Hygiene Score: 92/100
-
-Detected:
-✓ Python
-✓ Terraform
-
-Issues:
-⚠ Missing Terraform state ignore rules
-
-Recommendations:
-• Add .terraform/
-• Ignore *.tfstate files
-```
-
----
-
-### 🤖 CI Integration
-
-Use GitIgnite in automated workflows.
+Install GitIgnite from PyPI:
 
 ```bash
-ignite doctor --ci
-```
-
-CI mode:
-
-* Returns exit code `0` when healthy
-* Returns non-zero exit code when issues exist
-
-Perfect for GitHub Actions and other CI pipelines.
-
----
-
-### 🔐 Repository Auditing
-
-Identify potentially risky files that should not be committed.
-
-```bash
-ignite audit
-```
-
-Example:
-
-```text
-🔍 ignite audit
-
-Potential Risks:
-
-⚠ .env file detected
-
-Recommendation:
-Add .env to .gitignore immediately.
-```
-
----
-
-## 🚀 Installation
-
-### From Source
-
-Clone the repository:
-
-```bash
-git clone https://github.com/sirishapadmasekhar/gitignite.git
-cd gitignite
-```
-
-Create and activate a virtual environment:
-
-#### macOS/Linux
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-#### Windows
-
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements-dev.txt
-pip install -e .
+pip install gitignite
 ```
 
 Verify installation:
@@ -234,96 +70,115 @@ ignite --help
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
-Scan your repository:
+### Scan a Project
+
+Detect technologies and review current Git hygiene:
 
 ```bash
 ignite scan
 ```
 
-Apply fixes:
+Example output:
 
-```bash
-ignite fix
+```text
+🔥 ignite
+Scanning: /path/to/project
+
+Detected:
+✓ Python
+✓ VS Code
+
+Already configured:
+✓ .venv/
+✓ __pycache__/
+✓ *.pyc
+✓ .vscode/
 ```
 
-Check repository health:
+---
+
+### Evaluate Repository Health
+
+Generate a Git Hygiene Score:
 
 ```bash
 ignite doctor
 ```
 
-Use in CI:
+Example:
+
+```text
+🩺 ignite doctor
+
+Git Hygiene Score: 100/100
+
+Detected:
+✓ Python
+✓ VS Code
+
+✓ No issues found.
+```
+
+---
+
+### Use in Continuous Integration
+
+Fail builds when hygiene issues are detected:
 
 ```bash
 ignite doctor --ci
 ```
 
-Audit for risks:
+Example:
 
-```bash
-ignite audit
+```text
+CI check passed.
 ```
 
----
+Exit codes:
 
-## Supported Technologies
-
-| Technology | Detection Method           | Suggested Ignore Rules                              |
-| ---------- | -------------------------- | --------------------------------------------------- |
-| Python     | Python project files       | `.venv/`, `__pycache__/`, `*.pyc`, `.pytest_cache/` |
-| Node.js    | `package.json`             | `node_modules/`                                     |
-| VS Code    | `.vscode/` folder          | `.vscode/`                                          |
-| Jupyter    | `.ipynb` notebooks         | `.ipynb_checkpoints/`                               |
-| Docker     | Dockerfile / Compose files | `.env`, `*.log`                                     |
-| Terraform  | `.tf` files                | `.terraform/`, `*.tfstate`, `*.tfstate.*`           |
+| Exit Code | Meaning         |
+| --------- | --------------- |
+| 0         | No issues found |
+| 1         | Issues detected |
 
 ---
 
-## Example Workflow
+### Automatically Fix Missing Rules
+
+Apply recommended `.gitignore` entries:
 
 ```bash
-# Analyze repository
-ignite scan
-
-# Fix missing ignore rules
 ignite fix
+```
 
-# Evaluate hygiene
-ignite doctor
+GitIgnite updates your `.gitignore` safely by appending missing rules.
 
-# Validate in CI
-ignite doctor --ci
+---
 
-# Audit for common risks
+### Audit Risky Files
+
+Identify files that may expose secrets or unnecessary artifacts:
+
+```bash
 ignite audit
+```
+
+Example:
+
+```text
+🔍 ignite audit
+
+✓ No obvious risks found.
 ```
 
 ---
 
-## Development
+## Typical Workflow
 
-Set up the development environment:
-
-```bash
-git clone https://github.com/sirishapadmasekhar/gitignite.git
-cd gitignite
-
-python -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements-dev.txt
-pip install -e .
-```
-
-Run tests:
-
-```bash
-pytest
-```
-
-Run GitIgnite locally:
+Use GitIgnite as part of your development process:
 
 ```bash
 ignite scan
@@ -334,60 +189,86 @@ ignite audit
 
 ---
 
-## Continuous Integration
+## GitHub Actions Example
 
-GitIgnite uses GitHub Actions to automatically test against multiple Python versions.
+Integrate GitIgnite into CI pipelines:
 
-Current CI coverage:
-
-* Python 3.9
-* Python 3.10
-* Python 3.11
-
-All tests must pass before merging changes.
+```yaml
+- name: Check Git hygiene
+  run: ignite doctor --ci
+```
 
 ---
 
-## Project Philosophy
+## Why GitIgnite?
 
-Git hygiene should not depend on memory.
+Many repositories unintentionally include:
 
-Developers should not have to remember:
+* Virtual environments
+* Cache directories
+* Notebook checkpoints
+* IDE settings
+* Log files
+* Environment files
+* Generated artifacts
 
-* which tools require ignore rules,
-* whether secrets are excluded,
-* if temporary artifacts are tracked,
-* or when project requirements changed.
+These files clutter repositories, increase review noise, and may expose sensitive information.
 
-Repositories evolve.
-
-**GitIgnite helps your Git hygiene evolve with them.**
+GitIgnite helps teams establish consistent Git hygiene with minimal effort.
 
 ---
 
-## Roadmap
+## Project Status
 
-Future improvements may include:
+GitIgnite is actively maintained and continuously evolving.
 
-* Additional technology support
-* More repository health checks
-* Enhanced auditing capabilities
-* Improved reporting
-* Package distribution via PyPI
+Planned improvements include:
+
+* Additional technology detectors
+* Custom configuration support
+* Expanded auditing capabilities
+* Enhanced CI integrations
 
 ---
 
 ## Contributing
 
-Contributions are welcome.
+Contributions, suggestions, and bug reports are welcome.
 
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for new functionality
-4. Ensure all tests pass
-5. Submit a pull request
+To contribute:
 
-Before contributing:
+1. Fork the repository.
+2. Create a feature branch.
+3. Add tests for your changes.
+4. Submit a pull request.
+
+Please ensure all tests pass before opening a PR.
+
+---
+
+## Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/sirishapadmasekhar/gitignite.git
+cd gitignite
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install development dependencies:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Run tests:
 
 ```bash
 pytest
@@ -403,10 +284,11 @@ See the `LICENSE` file for details.
 
 ---
 
-<div align="center">
+## Links
 
-Built with ❤️ to help developers keep repositories clean.
+* GitHub Repository: https://github.com/sirishapadmasekhar/gitignite
+* PyPI Package: https://pypi.org/project/gitignite/
 
-**GitIgnite — Smart Git hygiene for modern projects.**
+---
 
-</div>
+Made with ❤️ to help developers keep their repositories clean.

@@ -26,3 +26,8 @@ __pycache__/
 
 # Added by ignite
 *.pyc
+
+# Packaging
+dist/
+build/
+*.egg-info/
