@@ -1,8 +1,5 @@
 # 🔥 GitIgnite
 
-
-# 🔥 GitIgnite
-
 [![PyPI version](https://img.shields.io/pypi/v/gitignite.svg)](https://pypi.org/project/gitignite/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/gitignite.svg)](https://pypi.org/project/gitignite/)
 [![Tests](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml/badge.svg)](https://github.com/sirishapadmasekhar/gitignite/actions/workflows/tests.yml)
